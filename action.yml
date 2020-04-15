@@ -1,0 +1,47 @@
+name: "Dokku Deploy GitHub Action"
+author: "Samu Linden"
+description: "Deploy a Git subtree to dokku."
+branding:
+  icon: "upload-cloud"
+  color: "green"
+inputs:
+  ssh-private-key:
+    description: "The ssh private key to the dokku instance. WARNING: use a secret! Do not pass a plain text value!"
+    required: true
+  dokku-user:
+    description: "The user to use for ssh (Default: dokku)"
+    required: false
+    default: "dokku"
+  dokku-host:
+    description: "The dokku host to ssh into"
+    required: true
+  dokku-ip-address:
+    description: "Dokku server IP address. Needed only if your domain points to a proxy (eg. CloudFlare)"
+    required: false
+    default: ""
+  app-name:
+    description: "The dokku app name"
+    required: true
+  remote-branch:
+    description: "The branch to push on the remote repository (Default: master)"
+    required: false
+    default: "master"
+  git-push-flags:
+    description: "Additional flags to be passed to the git push command. Could be used to force push"
+    required: false
+    default: ""
+  git-subtree-prefix:
+    description: "The directory to be pushed to dokku."
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.ssh-private-key }}
+    - ${{ inputs.dokku-user }}
+    - ${{ inputs.dokku-host }}
+    - ${{ inputs.dokku-ip-address }}
+    - ${{ inputs.app-name }}
+    - ${{ inputs.remote-branch }}
+    - ${{ inputs.git-push-flags }}
+    - ${{ inputs.git-subtree-prefix }}
