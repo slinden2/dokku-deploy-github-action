@@ -19,11 +19,12 @@ with:
 ```
 
 Available parameters:
-_ ssh-private-key | required
-_ dokku-user | User for dokku. Optional. Default: dokku
-_ dokku-host | Domain name of the server. Required.
-_ dokku-ip-address | Needed if the domain name doesn't point directly to the server (for example with CloudFlare). Optional.
-_ app-name | Name of the application. Required.
-_ remote-branch | Name of the branch to be pushed. Optional. Default: master
-_ git-push-flags | Flags to be used with git subtree. Optional.
-_ git-subtree-prefix | Name of the directory to push (where the built application is)
+
+- ssh-private-key | required
+- dokku-user | User for dokku. Optional. Default: dokku
+- dokku-host | Domain name of the server. Required.
+- dokku-ip-address | Needed if the domain name doesn't point directly to the server (for example with CloudFlare). Optional.
+- app-name | Name of the application. Required.
+- remote-branch | Name of the branch to be pushed. Optional. Default: master
+- git-push-flags | Flags to be used with git subtree. Optional.
+- git-subtree-prefix | Name of the directory to push (where the built application is)
