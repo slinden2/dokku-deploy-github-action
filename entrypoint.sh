@@ -8,6 +8,7 @@ DOKKU_APP_NAME=$5
 DOKKU_REMOTE_BRANCH=$6
 GIT_PUSH_FLAGS=$7
 GIT_SUBTREE_PREFIX=$8
+FORCE_PUSH_SUBTREE=$9
 
 # Setup the SSH environment
 mkdir -p ~/.ssh
@@ -34,7 +35,13 @@ git remote add dokku $git_repo
 git remote -v
 
 # Prepare to push to Dokku git repository
-GIT_COMMAND="git subtree push --prefix ${GIT_SUBTREE_PREFIX} dokku $DOKKU_REMOTE_BRANCH"
+GIT_COMMAND=""
+if [ $FORCE_PUSH_SUBTREE ]
+then
+    GIT_COMMAND="git push dokku `git subtree split --prefix $GIT_SUBTREE_PREFIX master`:$DOKKU_REMOTE_BRANCH --force"
+else
+    GIT_COMMAND="git subtree push --prefix ${GIT_SUBTREE_PREFIX} dokku $DOKKU_REMOTE_BRANCH"
+fi
 echo "GIT_COMMAND=$GIT_COMMAND"
 
 # Push to Dokku git repository

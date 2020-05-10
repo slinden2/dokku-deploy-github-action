@@ -45,3 +45,4 @@ runs:
     - ${{ inputs.remote-branch }}
     - ${{ inputs.git-push-flags }}
     - ${{ inputs.git-subtree-prefix }}
+    - ${{ inputs.force-push-subtree }}

@@ -28,3 +28,4 @@ Available parameters:
 - remote-branch | Name of the branch to be pushed. Optional. Default: master
 - git-push-flags | Flags to be used with git subtree. Optional.
 - git-subtree-prefix | Name of the directory to push (where the built application is)
+- force-push-subtree | To use force push set this to true.
